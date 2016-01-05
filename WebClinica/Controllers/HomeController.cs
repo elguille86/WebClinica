@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebClinica.Models;
@@ -26,9 +27,30 @@ namespace WebClinica.Controllers
 
             return View(datos);
         }
-        public ActionResult mapa()
+        public ActionResult mapa(long? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocalClinica local = new LocalClinica();
+            String codigo = id.ToString();
+         
+                var datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();
+                if (datos == null)
+                {
+                    ViewBag.Message = "No se encuentra Datos";
+                    return View();
+                }
+
+                ViewBag.Lat = datos.Lat_cli;
+                ViewBag.Log = datos.Log_cli;
+                ViewBag.nom_cli = datos.nom_cli;
+                return View(datos);
+          
+            
+
+      
         }
 
         public ActionResult Contact()
