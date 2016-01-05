@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebClinica.Models.Clinicas>
+
+@{
+    ViewBag.Title = "locales";
+}
+
+<h2>locales</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div style="width: 90%; margin : 0 auto;">
+    <table class="table">
+        <tr>
+            <th width="10%"> Clinica </th>
+            <th width="40%">Decripcion</th>
+            <th width="30%">Direccion</th>
+            <th width="10%">Telefono </th>
+            <th width="10%"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.des_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dir_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tel_cli)
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Mapa", "mapa", new { id = item.cod_cli })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

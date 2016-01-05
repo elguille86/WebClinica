@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "mapa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>mapa</h2>
+
+<link rel='stylesheet' type='text/css' href='http://www.vaneco.com.pe/views/layout/default/css/popup11.css' />
+<script type='text/javascript'
+        src='http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false'>
+
+</script>
+<script type='text/javascript'>
+
+        function initialize() {
+            var latitud = '-12.078803'; var longitud = '-77.101464';
+            var latitudCen = '-12.077035'; var longitudCen = '-77.100392';
+            var latlng = new google.maps.LatLng(latitud,longitud);
+            var latlngcenter = new google.maps.LatLng(latitudCen,longitudCen);
+            var myOptions = {
+                zoom: 16, center: latlngcenter, mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+            map.setTilt(45);
+            /*Imagenes*/
+            var image = 'http://www.vaneco.com.pe/public/images/logi.png';
+            var myLatLng = new google.maps.LatLng(latitud,longitud);
+
+            /*Descripcion*/
+            var contentString = "<div id='vent'> <b>Vaneco </b>  Direccion : Av. Andres Razuri 207 <br/> Maranga - San Miguel </div>";
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng, map: map, title: 'Ver Direcci&oacuten', icon: image
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
+            infowindow.open(map,marker);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+ 
+    <div id='map_canvas'></div>
+ <style>
+
+     #map_canvas { border:5px inset #0099FF; width:  650px;  height: 400px; }
+#vent{ font-size:12px; text-align:justify; } 
+ </style>
