@@ -9,7 +9,6 @@
 <link rel='stylesheet' type='text/css' href='http://www.vaneco.com.pe/views/layout/default/css/popup11.css' />
 <script type='text/javascript'
         src='http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false'>
-
 </script>
 <script type='text/javascript'>
 
@@ -49,11 +48,33 @@
 </script>
 
  
-    <div id='map_canvas'></div>
-@ViewBag.Message
+    <div id='map_canvas' class="micolumns"></div>
+    <div class="micolumns map_canvas_desc">
+        <b>Nombre de la Clinica </b>: @ViewBag.nom_cli<br/>
+        <b>Descripcion</b>: @ViewBag.descrip
+        <b>Telefono</b>: @ViewBag.tel_cli
+</div>
+ 
  <style>
 
-     #map_canvas { border:5px inset #0099FF; width:  650px;  height: 400px; }
-#vent{ font-size:12px; text-align:justify; } 
+#map_canvas { border:5px inset #0099FF; width:  650px;  height: 400px; }
+#vent{ font-size:12px; text-align:justify; }
+.micolumns {
+display:inline-block;
+vertical-align:top;
+     }
+     .map_canvas_desc {
+         margin-left:15px;
+         border-radius:5px;
+         -webkit-border-radius:5px;
+         -moz-border-radius:5px;
+         -o-border-radius:5px;
+         border:1px inset #0099FF;
+         padding:10px 15px;
+         width:450px;
+         min-height:300px;
+
+     }
+
  </style>
-@ViewBag.Message
+ <p> @Html.ActionLink("Retornas a la Lista de Locales", "locales", "Home") </p>

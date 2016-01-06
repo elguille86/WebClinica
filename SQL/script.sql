@@ -9,7 +9,10 @@ CREATE TABLE [dbo].[Tb_cod](
 )
 GO
 
- 
+
+INSERT [dbo].[Tb_cod] ([year_cod] , [nro] , [tabla_genera]) values (2016,	4,	'Clinicas')
+ GO
+
 
 Create table Clinicas(
 cod_cli varchar(20) primary key,
@@ -24,6 +27,11 @@ Est_cli varchar(3)
 )
 
 GO
+INSERT [dbo].[Clinicas] ([cod_cli], [nom_cli], [des_cli], [dir_cli], [fec_Reg], [tel_cli], [Lat_cli], [Log_cli], [Est_cli]) VALUES (N'160000000001', N'clinica02', N'brinda serviocs de Odontologia ', N'la mz do', CAST(0x0000A5850115509D AS DateTime), N'124050055', N'-12.078001', N'-77.027978', N'1')
+INSERT [dbo].[Clinicas] ([cod_cli], [nom_cli], [des_cli], [dir_cli], [fec_Reg], [tel_cli], [Lat_cli], [Log_cli], [Est_cli]) VALUES (N'160000000002', N'clinica03', N'brinda serviocs de Odontologia ', N'la mz do', CAST(0x0000A585011550AA AS DateTime), N'124050055', N'-12.084759', N'-77.009278', N'1')
+INSERT [dbo].[Clinicas] ([cod_cli], [nom_cli], [des_cli], [dir_cli], [fec_Reg], [tel_cli], [Lat_cli], [Log_cli], [Est_cli]) VALUES (N'160000000003', N'clinica 01', N'brinda serviocs de Odontologia ', N'la mz do', CAST(0x0000A585011916CE AS DateTime), N'124050055', N'-12.096349', N'-76.991393', N'1')
+INSERT [dbo].[Clinicas] ([cod_cli], [nom_cli], [des_cli], [dir_cli], [fec_Reg], [tel_cli], [Lat_cli], [Log_cli], [Est_cli]) VALUES (N'160000000004', N'clinica 02', N'brinda serviocs de Odontologia ', N'la mz do', CAST(0x0000A585011916D4 AS DateTime), N'124050055', N'-12.110615', N'-76.999357', N'1')
+Go
 
 Create Procedure  [dbo].[S_Genera_Codigo2]  
  @nomtb varchar(50) ,@nro int output
@@ -56,7 +64,10 @@ declare @ano varchar(4)
 
  
 CREATE PROCEDURE  SP_INSERTACLINICA
--- exec SP_INSERTACLINICA 'clinica02','brinda serviocs de Odontologia ','la mz do' ,'124050055','-12.200','-45.00' 
+/*
+exec SP_INSERTACLINICA 'clinica02','brinda serviocs de Odontologia ','la mz do' ,'124050055','-12.078001','-77.027978' 
+exec SP_INSERTACLINICA 'clinica03','brinda serviocs de Odontologia ','la mz do' ,'124050055','-12.075509','-77.029135' 
+*/
 @nom_cli varchar(250),@des_cli varchar(250), @dir_cli varchar(250), @tel_cli varchar(200),
 @Lat_cli varchar(50), @Log_cli varchar(50)  
 as
@@ -80,3 +91,6 @@ BEGIN
  END CATCH 
 END
 GO
+
+
+ 

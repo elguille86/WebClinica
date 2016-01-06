@@ -31,7 +31,9 @@ namespace WebClinica.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                
+                RedirectToAction("locales", "Home");
+               // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             LocalClinica local = new LocalClinica();
             String codigo = id.ToString();
@@ -45,7 +47,11 @@ namespace WebClinica.Controllers
 
                 ViewBag.Lat = datos.Lat_cli;
                 ViewBag.Log = datos.Log_cli;
+                ViewBag.descrip = datos.des_cli;
                 ViewBag.nom_cli = datos.nom_cli;
+                ViewBag.tel_cli = datos.tel_cli;
+
+         
                 return View(datos);
           
             
