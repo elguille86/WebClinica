@@ -29,34 +29,25 @@ namespace WebClinica.Controllers
         }
         public ActionResult mapa(long? id)
         {
-            if (id == null)
-            {
-                
-                RedirectToAction("locales", "Home");
-               // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (id == null){
+                //RedirectToAction("locales", "Home");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             LocalClinica local = new LocalClinica();
             String codigo = id.ToString();
          
-                var datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();
-                if (datos == null)
-                {
-                    ViewBag.Message = "No se encuentra Datos";
-                    return View();
-                }
-
-                ViewBag.Lat = datos.Lat_cli;
-                ViewBag.Log = datos.Log_cli;
-                ViewBag.descrip = datos.des_cli;
-                ViewBag.nom_cli = datos.nom_cli;
-                ViewBag.tel_cli = datos.tel_cli;
-
-         
-                return View(datos);
-          
-            
-
-      
+            var datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();
+            if (datos.Equals(null))
+            {
+                ViewBag.Message = "No se encuentra Datos";
+                return View();
+            }
+            ViewBag.Lat = datos.Lat_cli;
+            ViewBag.Log = datos.Log_cli;
+            ViewBag.descrip = datos.des_cli;
+            ViewBag.nom_cli = datos.nom_cli;
+            ViewBag.tel_cli = datos.tel_cli;
+            return View(datos);
         }
 
         public ActionResult Contact()

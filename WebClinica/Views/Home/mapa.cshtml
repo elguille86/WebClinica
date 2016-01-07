@@ -13,35 +13,27 @@
 <script type='text/javascript'>
 
     function initialize() {
-    
+
         var latitud = '@ViewBag.Lat'; var longitud = '@ViewBag.Log';
         var latitudCen = '@ViewBag.Lat'; var longitudCen = '@ViewBag.Log';
         var latlng = new google.maps.LatLng(latitud, longitud);
         var latlngcenter = new google.maps.LatLng(latitudCen, longitudCen);
-        var myOptions = {
-            zoom: 16, center: latlngcenter, mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+        var myOptions = { zoom: 16, center: latlngcenter, mapTypeId: google.maps.MapTypeId.ROADMAP  };
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         map.setTilt(45);
         /*Imagenes*/
-        var image = 'http://www.vaneco.com.pe/public/images/logi.png';
+        var image = '@Url.Content("~/images/cs.png")';
         var myLatLng = new google.maps.LatLng(latitud, longitud);
-
         /*Descripcion*/
         var contentString = "<div id='vent'> <b>@ViewBag.nom_cli </b>   </div>";
-
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
-
         var marker = new google.maps.Marker({
             position: myLatLng, map: map, title: 'Ver Direcci&oacuten', icon: image
         });
-
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.open(map, marker);
-        });
+        google.maps.event.addListener(marker, 'click', function () {  infowindow.open(map, marker); });
         infowindow.open(map, marker);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -51,7 +43,7 @@
     <div id='map_canvas' class="micolumns"></div>
     <div class="micolumns map_canvas_desc">
         <b>Nombre de la Clinica </b>: @ViewBag.nom_cli<br/>
-        <b>Descripcion</b>: @ViewBag.descrip
+        <b>Descripcion</b>: @ViewBag.descrip<br />
         <b>Telefono</b>: @ViewBag.tel_cli
 </div>
  

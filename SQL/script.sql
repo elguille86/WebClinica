@@ -92,5 +92,11 @@ BEGIN
 END
 GO
 
-
- 
+select ROW_NUM ,* from dbo.Clinicas
+  SELECT ROW_NUMBER() OVER(ORDER BY cod_cli) ROW_NUM, * FROM Clinicas
+  
+  SELECT * FROM 
+(
+SELECT ROW_NUMBER() OVER(ORDER BY cod_cli) ROW_NUM, * FROM Clinicas
+ ) AS K
+ WHERE ROW_NUM >3 AND ROW_NUM <=4
