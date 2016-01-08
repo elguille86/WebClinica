@@ -1,20 +1,27 @@
-﻿@model IEnumerable<WebClinica.Models.Clinicas>
+﻿@*@model IEnumerable<WebClinica.Models.Clinicas>*@
+@model PagedList.IPagedList<WebClinica.Models.Clinicas>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "locales";
 }
 
 <h2>locales</h2>
+ 
+@using (Html.BeginForm())
+{
+    <p>
+        Busqueda de Clinica : @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div style="width: 90%; margin : 0 auto;">
+<div style="width: 90%; margin : 0 auto; font-size:0.9em;">
     <table class="table">
         <tr>
-            <th width="10%"> Clinica </th>
-            <th width="40%">Decripcion</th>
-            <th width="30%">Direccion</th>
+            <th width="25%"> Clinica </th>
+            <th width="20%">Decripcion</th>
+            <th width="25%">Direccion</th>
             <th width="10%">Telefono </th>
             <th width="10%"></th>
         </tr>
@@ -41,4 +48,12 @@
         }
 
     </table>
+
+    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) Del @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("locales",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
 </div>

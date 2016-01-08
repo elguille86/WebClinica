@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebClinica.Models;
 
+using PagedList;
 
 namespace WebClinica.Controllers
 {
@@ -16,16 +17,30 @@ namespace WebClinica.Controllers
             return View();
         }
 
-        public ActionResult locales()
+        public ActionResult locales(int? page)
         {
+            string currentFilter = null; string searchString = null;
             LocalClinica local = new LocalClinica();
 
-            //var item = (from x in Items where x.Id == 123 select x).First();
-            var datos = ( from x in  local.Clinicas where x.Est_cli=="1" select x );
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            ViewBag.Message = "Lista de los Clinicas.";
+            ViewBag.CurrentFilter = searchString;
 
-            return View(datos);
+
+            var datos = ( from x in  local.Clinicas where x.Est_cli=="1" orderby x.cod_cli select x );
+
+ 
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+
+            return View(datos.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult mapa(long? id)
         {
