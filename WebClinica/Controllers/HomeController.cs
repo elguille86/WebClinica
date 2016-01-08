@@ -17,11 +17,24 @@ namespace WebClinica.Controllers
             return View();
         }
 
-        public ActionResult locales(int? page)
+        public ActionResult locales(int? page, string searchString)
         {
-            string currentFilter = null; string searchString = null;
+            string currentFilter = null;  
             LocalClinica local = new LocalClinica();
-
+            //var datos = (from x in local.Clinicas where x.Est_cli == "1" orderby x.cod_cli select x);
+            var datos = (from x in local.Clinicas where x.Est_cli == "1" select x);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                datos = datos.Where(s => s.nom_cli.Contains(  searchString.ToString()   ) );
+                /*
+                 datos = datos.Where(s => s.des_cli.Contains(searchString)
+                                 || s.FirstMidName.Contains(searchString));
+                 */
+            }
+            else { 
+            
+            }
+            datos = datos.OrderBy(x => x.cod_cli);
             if (searchString != null)
             {
                 page = 1;
@@ -34,7 +47,7 @@ namespace WebClinica.Controllers
             ViewBag.CurrentFilter = searchString;
 
 
-            var datos = ( from x in  local.Clinicas where x.Est_cli=="1" orderby x.cod_cli select x );
+            //var datos = ( from x in  local.Clinicas where x.Est_cli=="1" orderby x.cod_cli select x );
 
  
             int pageSize = 8;
@@ -62,6 +75,7 @@ namespace WebClinica.Controllers
             ViewBag.descrip = datos.des_cli;
             ViewBag.nom_cli = datos.nom_cli;
             ViewBag.tel_cli = datos.tel_cli;
+            ViewBag.dir_cli = datos.dir_cli;
             return View(datos);
         }
 
