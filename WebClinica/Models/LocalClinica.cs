@@ -8,7 +8,8 @@ namespace WebClinica.Models
     public partial class LocalClinica : DbContext
     {
         public LocalClinica()
-            : base("name=LocalClinica")
+            :  base("name=DefaultConnection")
+            /* base("name=LocalClinica") */
         {
         }
 

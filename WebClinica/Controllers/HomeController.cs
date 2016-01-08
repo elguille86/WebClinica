@@ -78,10 +78,10 @@ namespace WebClinica.Controllers
             ViewBag.dir_cli = datos.dir_cli;
             return View(datos);
         }
-
+        
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Puede Contactarse con nosostros";
 
             return View();
         }
