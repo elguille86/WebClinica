@@ -32,9 +32,7 @@ namespace WebClinica.Controllers
                                  || s.FirstMidName.Contains(searchString));
                  */
             }
-            else { 
-            
-            }
+         
             datos = datos.OrderBy(x => x.cod_cli);
             if (searchString != null)
             {
