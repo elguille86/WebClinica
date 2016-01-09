@@ -7,9 +7,11 @@
 }
 
 <h2>Administracion de Clinicas</h2>
+<div>@Html.Raw(ViewBag.mensaje)</div>
 <p>
     @Html.ActionLink("Nueva Clinica", "CreateClinica")
 </p>
+
 @using (Html.BeginForm())
 {
     <p>

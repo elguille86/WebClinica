@@ -76,6 +76,11 @@ namespace WebClinica.Controllers
 
         public ActionResult ListaClinicas(int? page, string searchString)
         {
+            if (TempData["mensaje"] != null)
+            {
+                ViewBag.mensaje = TempData["mensaje"];
+                TempData["mensaje"] = null;
+            }
             string currentFilter = null;
             LocalClinica local = new LocalClinica();
             //var datos = (from x in local.Clinicas where x.Est_cli == "1" orderby x.cod_cli select x);
@@ -86,7 +91,7 @@ namespace WebClinica.Controllers
  
             }
 
-            datos = datos.OrderBy(x => x.cod_cli);
+            datos = datos.OrderByDescending(x => x.cod_cli);
             if (searchString != null)
             {
                 page = 1;
@@ -184,7 +189,9 @@ namespace WebClinica.Controllers
             }
             catch( Exception ex)
             {
-                ViewBag.mensaje = ("<div class='alerta'>Error al Registra Valores > " +ex.Message+" </div>");
+                string mimsg = ex.Message;
+                //ViewBag.mensaje = ("<div class='alerta'>Error al Registra Valores > " +ex.Message+" </div>");
+                ViewBag.mensaje = ("<div class='alerta'>Error al Registra Valores   </div>");
                 return View();
             }
         }
@@ -198,17 +205,57 @@ namespace WebClinica.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
- 
-            Clinicas datos = DbClinica.Clinicas.Find(id);
+            string codigo = id.ToString();
+            LocalClinica local = new LocalClinica();
+            Clinicas datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();
+            //Clinicas datos = DbClinica.Clinicas.Find(id);
             if (datos == null)
             {
                 return HttpNotFound();
             }
+            if (TempData["mensaje"] != null)
+            {
+                ViewBag.mensaje = TempData["mensaje"];
+                TempData["mensaje"] = null;
+            }
             return View(datos);
+
+
+
+    
+   
+
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditClinicas(Clinicas miClinica)
+        {
 
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    miClinica.fec_Reg = System.DateTime.Now;
+                    DbClinica.Entry(miClinica).State = EntityState.Modified;
+                    DbClinica.SaveChanges();
+                    TempData["mensaje"] = ("<div class='exito'>Dato Actualizado con Exito</div>");
+                    return RedirectToAction("ListaClinicas");
+                }
+  
+                return RedirectToAction("EditClinicas");
+               // return RedirectToAction("EditClinicas");
+                //return View(miClinica);
+            }
+            catch (Exception ex)
+            {
+                string mimsg = ex.Message;
+                //ViewBag.mensaje = ("<div class='alerta'>Error al Registra Valores > " +ex.Message+" </div>");
+                ViewBag.mensaje = ("<div class='alerta'>Error al Editar Valores  " + mimsg + " </div>");
+                return View();
+            }
+        }
 
 
     }
