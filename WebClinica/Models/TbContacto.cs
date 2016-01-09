@@ -12,10 +12,12 @@ namespace WebClinica.Models
         [Key]
         public int cod_cont { get; set; }
 
+        [Required(ErrorMessage = "Se Requiere el Nombre")]
         [StringLength(500)]
         public string nom_cont { get; set; }
 
         [StringLength(500)]
+        [Required(ErrorMessage = "Se Requiere el E-mail")]
         public string emi_cont { get; set; }
 
         [StringLength(50)]

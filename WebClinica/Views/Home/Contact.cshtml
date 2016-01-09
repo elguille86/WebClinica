@@ -1,17 +1,96 @@
-﻿@{
+﻿@model WebClinica.Models.TbContacto
+@{
     ViewBag.Title = "Contactenos";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+ 
+<div>@Html.Raw(ViewBag.mensaje)</div>
 
-<address>
-    Oficinas Centrales<br />
-    Av Carlos Gonzales 754 - Urb Los Angeles - La Molina<br />
-    <abbr title="Phone">P:</abbr>
-    +51 584-4551
-</address>
+<div class="colum div1">
+     
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <div class="form-horizontal">
+ 
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Nombre Completo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nom_cont, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nom_cont, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emi_cont, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emi_cont, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Telefono", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tel_cont, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tel_cont, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Asunto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.asu_cont, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.asu_cont, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Mensaje", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.men_cont, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.men_cont, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+</div>
+<div class="colum div2">
+    <address>
+        Oficinas Centrales<br />
+        Av Carlos Gonzales 754 - Urb Los Angeles - La Molina<br />
+        <abbr title="Phone">P:</abbr>
+        +51 584-4551
+    </address>
+
+    <address>
+        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    </address>
+</div>
+
+<style>
+    .colum {
+        display:inline-block;
+        vertical-align:top;
+    }
+    .div1 {
+        width:60%;
+    }
+    .div2 {
+        width:35%;
+    }
+</style>

@@ -10,29 +10,18 @@ namespace WebClinica.Controllers
 {
     public class AuthController : Controller
     {
+
+        ModelContacto DbContacto = new ModelContacto();
         // GET: Auth
-         [Authorize] 
+        [Authorize] 
         public ActionResult Index()
         {
+    
             return View();
         }
  
 
-         // POST: auth2/Create
-         [HttpPost]
-         public ActionResult Index(FormCollection collection)
-         {
-             try
-             {
-                 // TODO: Add insert logic here
-
-                 return RedirectToAction("Index");
-             }
-             catch
-             {
-                 return View();
-             }
-         }
+ 
 
     }
 }

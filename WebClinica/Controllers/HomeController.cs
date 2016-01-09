@@ -12,6 +12,7 @@ namespace WebClinica.Controllers
 {
     public class HomeController : Controller
     {
+        ModelContacto DbContacto = new ModelContacto();
         public ActionResult Index()
         {
             return View();
@@ -78,12 +79,43 @@ namespace WebClinica.Controllers
             ViewBag.dir_cli = datos.dir_cli;
             return View(datos);
         }
-        
+ 
+
         public ActionResult Contact()
         {
-            ViewBag.Message = "Puede Contactarse con nosostros";
-
+            if (TempData["mensaje"] != null)
+            {
+                ViewBag.mensaje = TempData["mensaje"];
+                TempData["mensaje"] = null;
+            }
+            ViewBag.Message = "Puede Contactarse con nosostros "   ;
             return View();
         }
+
+
+        // POST: auth2/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[Bind(Include = "nom_cont,emi_cont")]
+        public ActionResult Contact( TbContacto dbcont)
+        {
+            try
+            {
+                dbcont.fecreg = System.DateTime.Now;
+                DbContacto.TbContacto.Add(dbcont);
+                DbContacto.SaveChanges();
+                TempData["mensaje"] =  ("<div class='exito'>Su Mensaje Fue Registrado con Exito</div>");
+                return RedirectToAction("Contact");
+
+            }
+            catch
+            {
+                ViewBag.mensaje =  ("<div class='alerta'>Error al Registra Valores</div>");
+                return View();
+            }
+        }
+
+     
+
     }
 }
