@@ -26,16 +26,19 @@
                     <li>@Html.ActionLink("Locales", "locales", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
-               
-
-
                 @Html.Partial("_LoginPartial")
             </div>
-            
-            
         </div>
     </div>
     <div class="container body-content">
+
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{     
+        <br/><br /><br />
+}
+
         @RenderBody()
         <hr />
         <footer>

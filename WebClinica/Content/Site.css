@@ -27,3 +27,25 @@ textarea {
 .exito{color:#4F8A10;background-color:#DFF2BF; border: 1px solid #4F8A10; }
 .alerta{color:#9F6000;background-color:#FEEFB3; border: 1px solid #9F6000; }
 .errovalid , .error{color:#D8000C;background-color:#FFBABA;  border: 1px solid #D8000C;}
+#nav, #nav ul{ 
+    margin:0; padding:0; list-style-type:none; list-style-position:outside; position:relative; 
+    line-height:1.5em;  font-family: Verdana,Arial,sans-serif; background:#FFF;  
+
+}
+#nav li{
+  
+  border-left:none;
+  border-right:none;
+  float:left;
+  position:relative;
+  min-width: 80px;
+}
+#nav a{
+  display:block;  text-decoration:none; margin: 5px;  border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;    color: #999999;
+}
+#nav a:hover{
+   color: #ffffff;
+}

@@ -52,7 +52,7 @@
         <div class="form-group">
             @Html.Label("Mensaje", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.men_cont, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.men_cont, 5,38, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.men_cont, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,6 +69,9 @@
 
 </div>
 <div class="colum div2">
+    <figure>
+        <img src="@Url.Content("~/images/contacto.png")" width="250" height="249" />
+    </figure>
     <address>
         Oficinas Centrales<br />
         Av Carlos Gonzales 754 - Urb Los Angeles - La Molina<br />
@@ -80,6 +83,8 @@
         <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
         <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
     </address>
+
+
 </div>
 
 <style>
