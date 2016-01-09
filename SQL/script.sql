@@ -65,7 +65,7 @@ declare @ano varchar(4)
  
 CREATE PROCEDURE  SP_INSERTACLINICA
 /*
-exec SP_INSERTACLINICA 'clinica02','brinda serviocs de Odontologia ','la mz do' ,'124050055','-12.078001','-77.027978' 
+execute SP_INSERTACLINICA 'clinica02','brinda serviocs de Odontologia ','la mz do' ,'124050055','-12.078001','-77.027978' 
 exec SP_INSERTACLINICA 'clinica03','brinda serviocs de Odontologia ','la mz do' ,'124050055','-12.075509','-77.029135' 
 */
 @nom_cli varchar(250),@des_cli varchar(250), @dir_cli varchar(250), @tel_cli varchar(200),
@@ -80,14 +80,14 @@ BEGIN
 		exec S_Genera_Codigo2  'Clinicas',@NroCorrelativo output
 		set @codigo =   right(year(getdate()),2)  +  right('00000000000000000'+ LTRIM(RTRIM(@NroCorrelativo))  ,10)
 		insert into Clinicas values(@codigo ,@nom_cli,@des_cli , @dir_cli,getdate() , @tel_cli  ,@Lat_cli , @Log_cli , 1  )		  
-		select 'Clinica Registra con Exti ','true','_mensaje'
+		--select 'Clinica Registra con Exti ','true','_mensaje'
 		--DBCC CHECKIDENT ('dbo.tb_documentos', RESEED, 0); 
 		COMMIT TRAN
  END TRY
  BEGIN CATCH 
 	ROLLBACK TRAN
 	--select ERROR_MESSAGE() 
-	select  'Error.-- No se ha podido Registrar los datos.','flase','_error'
+	--select  'Error.-- No se ha podido Registrar los datos.','flase','_error'
  END CATCH 
 END
 GO
@@ -100,3 +100,7 @@ select ROW_NUM ,* from dbo.Clinicas
 SELECT ROW_NUMBER() OVER(ORDER BY cod_cli) ROW_NUM, * FROM Clinicas
  ) AS K
  WHERE ROW_NUM >3 AND ROW_NUM <=4
+ 
+ 
+ 
+ 

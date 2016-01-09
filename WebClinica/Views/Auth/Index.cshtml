@@ -1,0 +1,54 @@
+﻿@*@model IEnumerable<WebClinica.Models.TbContacto>*@
+@model PagedList.IPagedList<WebClinica.Models.TbContacto>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Mensajes</h2>
+ 
+@using (Html.BeginForm())
+{
+    <p>
+        Busqueda de Nombre : @Html.TextBox("SearchString")
+        <input type="submit" class="btn btn-primary" value="Buscar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>  Nombre Completo </th>
+        <th>  Email </th>
+        <th> Asunto </th>
+        <th> Fecha.Reg </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_cont)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emi_cont)
+        </td>
+ 
+        <td>
+            @Html.DisplayFor(modelItem => item.asu_cont)
+        </td>
+ 
+        <td>
+            @Html.DisplayFor(modelItem => item.fecreg)
+        </td>
+        <td>
+            @Html.ActionLink("Detalle", "DetailsContact", new { id=item.cod_cont })  
+        </td>
+    </tr>
+}
+
+</table>
+    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) del @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

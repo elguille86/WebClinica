@@ -1,0 +1,67 @@
+﻿@*@model IEnumerable<WebClinica.Models.Clinicas>*@
+@model PagedList.IPagedList<WebClinica.Models.Clinicas>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "locales";
+}
+
+<h2>Administracion de Clinicas</h2>
+<p>
+    @Html.ActionLink("Nueva Clinica", "CreateClinica")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Busqueda de Clinica : @Html.TextBox("SearchString")
+        <input type="submit" class="btn btn-primary" value="Buscar" />
+    </p>
+}
+
+<div style="width: 90%; margin : 0 auto; font-size:0.9em;">
+    <table class="table">
+        <tr>
+            <th width="25%"> Clinica </th>
+            <th width="20%">Decripcion</th>
+            <th width="20%">Direccion</th>
+            <th width="10%">Telefono </th>
+            <th width="5%">Estado </th>
+            <th width="10%"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.des_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dir_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tel_cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Est_cli)
+                </td>
+                <td>
+                    
+                    @Html.ActionLink("Editar", "EditClinicas", new { id = item.cod_cli }) !
+                    @Html.ActionLink("Detalle", "DetalleClinicas", new { id = item.cod_cli })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) del @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ListaClinicas",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+</div>

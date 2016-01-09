@@ -9,7 +9,6 @@ namespace WebClinica.Models
     {
         public LocalClinica()
             :  base("name=DefaultConnection")
-            /* base("name=LocalClinica") */
         {
         }
 

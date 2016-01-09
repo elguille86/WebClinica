@@ -1,0 +1,83 @@
+﻿@model WebClinica.Models.Clinicas
+
+@{
+    ViewBag.Title = "DetalleClinicas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetalleClinicas</h2>
+
+<div>
+    <h4>Clinicas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre de la Clinica
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_cli)
+        </dd>
+
+        <dt>
+            Descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.des_cli)
+        </dd>
+
+        <dt>
+            Direccion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dir_cli)
+        </dd>
+
+        <dt>
+            Fecha de Registro
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fec_Reg)
+        </dd>
+
+        <dt>
+            Telefono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tel_cli)
+        </dd>
+
+        <dt>
+            Latitud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lat_cli)
+        </dd>
+
+        <dt>
+            Logitud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Log_cli)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Est_cli)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditClinicas", new { id = Model.cod_cli }) |
+    @Html.ActionLink("Retornas a la Lista", "ListaClinicas")
+</p>
