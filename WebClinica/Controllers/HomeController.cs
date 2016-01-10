@@ -21,7 +21,7 @@ namespace WebClinica.Controllers
         public ActionResult locales(int? page, string searchString)
         {
             string currentFilter = null;  
-            LocalClinica local = new LocalClinica();
+            ModelClinica local = new ModelClinica();
             //var datos = (from x in local.Clinicas where x.Est_cli == "1" orderby x.cod_cli select x);
             var datos = (from x in local.Clinicas where x.Est_cli == "1" select x);
             if (!String.IsNullOrEmpty(searchString))
@@ -60,7 +60,7 @@ namespace WebClinica.Controllers
                 //RedirectToAction("locales", "Home");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LocalClinica local = new LocalClinica();
+            ModelClinica local = new ModelClinica();
             String codigo = id.ToString();
          
             var datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();

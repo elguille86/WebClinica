@@ -183,7 +183,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Clinicas.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LocalClinica.cs" />
+    <Compile Include="Models\ModelClinica.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelContacto.cs" />
     <Compile Include="Models\TbContacto.cs" />
@@ -199,6 +199,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\contacto.png" />
+    <Content Include="images\cs.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\WebClinica.pubxml" />

@@ -5,9 +5,9 @@ namespace WebClinica.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class LocalClinica : DbContext
+    public partial class ModelClinica : DbContext
     {
-        public LocalClinica()
+        public ModelClinica()
             :  base("name=DefaultConnection")
         {
         }

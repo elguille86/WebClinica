@@ -7,9 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using WebClinica.Models;
 using System.Net;
-
-
-
+ 
 using PagedList;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -24,7 +22,7 @@ namespace WebClinica.Controllers
     {
 
         ModelContacto DbContacto = new ModelContacto();
-        LocalClinica DbClinica = new LocalClinica();
+        ModelClinica DbClinica = new ModelClinica();
         //public AreaModel model = new AreaModel();
        //CClienteDataContext DcCliente = new DCClienteDataContext();//
         // GET: Auth
@@ -82,7 +80,7 @@ namespace WebClinica.Controllers
                 TempData["mensaje"] = null;
             }
             string currentFilter = null;
-            LocalClinica local = new LocalClinica();
+            ModelClinica local = new ModelClinica();
             //var datos = (from x in local.Clinicas where x.Est_cli == "1" orderby x.cod_cli select x);
             var datos = (from x in local.Clinicas where x.Est_cli == "1" select x);
             if (!String.IsNullOrEmpty(searchString))
@@ -118,7 +116,7 @@ namespace WebClinica.Controllers
                 //RedirectToAction("locales", "Home");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LocalClinica local = new LocalClinica();
+            ModelClinica local = new ModelClinica();
             String codigo = id.ToString();
 
             var datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();
@@ -164,7 +162,7 @@ namespace WebClinica.Controllers
                 string Conexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
  
 
-                LocalClinica DBClinica = new LocalClinica();
+                ModelClinica DBClinica = new ModelClinica();
  
 
            using (var con = new SqlConnection(@Conexion))
@@ -206,7 +204,7 @@ namespace WebClinica.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             string codigo = id.ToString();
-            LocalClinica local = new LocalClinica();
+            ModelClinica local = new ModelClinica();
             Clinicas datos = (from x in local.Clinicas where x.cod_cli == codigo select x).First();
             //Clinicas datos = DbClinica.Clinicas.Find(id);
             if (datos == null)
