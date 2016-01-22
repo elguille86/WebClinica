@@ -92,12 +92,12 @@ OPEN nombre_cursor
 	FETCH  nombre_cursor  INTO  @nombre ,@dir_cent, @tel_cent   ,@latitud   ,@longitud
 	WHILE (@@FETCH_STATUS = 0)
 		BEGIN	
-		-- Lectura de la siguiente fila de un cursor
-		FETCH nombre_cursor INTO @nombre ,@dir_cent, @tel_cent   ,@latitud   ,@longitud
 		DECLARE  @NroCorrelativo int,  @codigo varchar(20)
 		exec S_Genera_Codigo2  'Clinicas',@NroCorrelativo output
 		set @codigo =   right(year(getdate()),2)  +  right('00000000000000000'+ LTRIM(RTRIM(@NroCorrelativo))  ,10)
 		insert into Clinicas values(@codigo ,@nombre ,'Centro de Salud de Primer Nivel ' , @dir_cent,getdate() , @tel_cent   ,@latitud   ,@longitud , 1  )
+		-- Lectura de la siguiente fila de un cursor
+		FETCH nombre_cursor INTO @nombre ,@dir_cent, @tel_cent   ,@latitud   ,@longitud
 	END -- Fin del bucle WHILE
 -- Cierra el cursor
 CLOSE nombre_cursor 
