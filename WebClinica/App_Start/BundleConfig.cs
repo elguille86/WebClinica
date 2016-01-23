@@ -25,6 +25,8 @@ namespace WebClinica
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/menu.css",
+                      
                       "~/Content/site.css"));
         }
     }
