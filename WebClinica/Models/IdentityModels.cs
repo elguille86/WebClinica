@@ -16,6 +16,7 @@ namespace WebClinica.Models
             // Agregar aquí notificaciones personalizadas de usuario
             return userIdentity;
         }
+        public string nombres { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

@@ -64,6 +64,11 @@ namespace WebClinica.Models
 
     public class RegisterViewModel
     {
+
+        [Required]
+        [Display(Name = "Nombre Completo")]
+        public string nombres { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Correo electrónico")]

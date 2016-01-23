@@ -180,6 +180,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601062155361_InitialCreate.cs" />
+    <Compile Include="Migrations\201601062155361_InitialCreate.Designer.cs">
+      <DependentUpon>201601062155361_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601231650321_nombre_Usuario.cs" />
+    <Compile Include="Migrations\201601231650321_nombre_Usuario.Designer.cs">
+      <DependentUpon>201601231650321_nombre_Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Clinicas.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -271,6 +280,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601062155361_InitialCreate.resx">
+      <DependentUpon>201601062155361_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601231650321_nombre_Usuario.resx">
+      <DependentUpon>201601231650321_nombre_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -160,11 +160,7 @@ namespace WebClinica.Controllers
             {
                 // this.ConnectionString = ConfigurationManager.ConnectionStrings["Movies"].ConnectionString;
                 string Conexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
- 
-
                 ModelClinica DBClinica = new ModelClinica();
- 
-
            using (var con = new SqlConnection(@Conexion))
                 {
                     //result = Dapper.SqlMapper.Query<int>(Conexion,"SP_INSERTACLINICA",System.Data.CommandType.StoredProcedure);
